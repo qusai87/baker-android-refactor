@@ -37,10 +37,10 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginRight="2dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="1dp"
         android:text="×"
-        android:textColor="#C21E13"
+        android:textColor="#720d61"
         android:textSize="24sp"
         android:textStyle="bold" />
 

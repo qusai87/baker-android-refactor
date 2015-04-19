@@ -33,6 +33,6 @@
         <item name="strokeWidth">4dp</item>
         <item name="lineWidth">30dp</item>
         <item name="unselectedColor">#FFFFFFFF</item>
-        <item name="selectedColor">#FFAF160E</item>
+        <item name="selectedColor">#720d61</item>
     </style>
 </resources>

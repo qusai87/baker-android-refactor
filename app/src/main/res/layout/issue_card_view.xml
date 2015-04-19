@@ -67,7 +67,7 @@
             android:ellipsize="none"
             android:singleLine="true"
             android:fontFamily="sans-serif-light"
-            android:textColor="#AF160E"
+            android:textColor="#720d61"
             android:textSize="15sp" />
 
         <TextView
@@ -78,7 +78,7 @@
             android:ellipsize="none"
             android:singleLine="true"
             android:fontFamily="Helvetica-Bold"
-            android:textColor="#AF160E"
+            android:textColor="#720d61"
             android:textSize="14sp" />
 
         <LinearLayout
@@ -121,7 +121,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:fontFamily="sans-serif-light"
-            android:textColor="#AF160E"
+            android:textColor="#720d61"
             android:textSize="11sp"/>
 
         <LinearLayout
