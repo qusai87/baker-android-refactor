@@ -1,0 +1,392 @@
+.primaryContainer {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 100%;
+    background-image:url("img/bg.jpg");
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    padding: 0px;
+    position: relative;
+    max-width: 1190px;
+    min-width: 230px;
+    border-bottom-right-radius: 0px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat no-repeat;
+}
+
+#box {
+    float: left;
+    height: 504px;
+    margin: 0px 0px 0px 0%;
+    clear: none;
+    width: 100%;
+    min-width: 0px;
+    min-height: 0px;
+    position: relative;
+    background-image:url("img/bgbg.jpg");
+    background-attachment: scroll;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: 0% 0%;
+    background-repeat: repeat repeat;
+}
+
+#image {
+    float: none;
+    width: 26.978729%;
+    max-width: none;
+    height: 142.1875px;
+    margin-left: auto;
+    margin-top: 41px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+#image1 {
+    float: none;
+    width: 58.232422%;
+    max-width: none;
+    height: 37.203125px;
+    margin-left: auto;
+    margin-top: 12px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+#image2 {
+    float: none;
+    width: 35.697216%;
+    max-width: none;
+    height: 44.890625px;
+    margin-left: auto;
+    margin-top: 59.71875px;
+    clear: both;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+    display: block;
+}
+
+#TabSocial {
+    float: none;
+    width: 23.709635%;
+    max-width: none;
+    height: 24.796875px;
+    margin-left: auto;
+    margin-top: 22.96875px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+#TabNumbers {
+    margin-left: auto;
+    float: none;
+    width: 37.321615%;
+    max-width: none;
+    height: 22.828125px;
+    margin-top: 189.53125px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+#image3 {
+    float: none;
+    width: 15.047642%;
+    max-width: none;
+    height: 23.890625px;
+    margin-left: auto;
+    margin-top: 72.03px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    position: relative;
+    top: 0px;
+    left: 0px;
+    display: block;
+    margin-right: auto;
+}
+
+@media only screen and (max-width: 5338px) {
+    .primaryContainer {
+        background-image:url("img/bg.jpg");
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-color: rgb(239, 239, 235);
+        width: 100%;
+        max-width: 1190px;
+        background-position: 0% 0%;
+        background-repeat: no-repeat no-repeat;
+    }
+
+    #box {
+        float: left;
+        height: auto;
+        margin-top: 0px;
+        margin-right: 0px;
+        margin-bottom: 0px;
+        clear: none;
+        width: 100%;
+        min-width: 0px;
+        min-height: 0px;
+        position: relative;
+        background-image:url("img/bgbg.jpg");
+        background-attachment: scroll;
+        -webkit-background-size: cover;
+        background-size: cover;
+        background-position: 50% 0%;
+        background-repeat: repeat repeat;
+    }
+
+    #image {
+        width: 321.0468751px;
+        max-width: none;
+        height: 142.1875px;
+        margin-top: -296.15625px;
+        clear: none;
+        color: rgb(0, 0, 0);
+    }
+
+    #image1 {
+        display: none;
+    }
+
+    #image2 {
+        width: 35.697216%;
+        max-width: none;
+        height: 44.890625px;
+        margin-top: 38.4375px;
+        clear: none;
+        color: rgb(0, 0, 0);
+        position: relative;
+        top: 0px;
+        left: 0px;
+        display: block;
+    }
+
+    #TabSocial {
+        margin-top: 27.96875px;
+        clear: none;
+    }
+
+    #TabNumbers {
+        margin-top: 272.21875px;
+        clear: none;
+        position: relative;
+        margin-left: 372.9375px;
+        margin-right: 0px;
+        width: 37.321429%;
+        top: 0px;
+        left: 0px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .primaryContainer {
+        max-width: 1500px;
+        width: 100%;
+    }
+
+    #box {
+        height: 350px;
+    }
+
+    #image {
+        width: 219px;
+        height: 96.1875px;
+        max-width: none;
+        margin-top: -249.31px;
+        clear: none;
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+
+    #image1 {
+        display: block;
+    }
+
+    #image2 {
+        width: 292.453125px;
+        margin-top: 29.31px;
+        clear: none;
+        height: 30.890625px;
+        max-width: none;
+    }
+
+    #TabSocial {
+        width: 284.51561999999996px;
+        max-width: none;
+        height: 24.796875px;
+        margin-top: 22.96875px;
+        clear: none;
+        color: rgb(0, 0, 0);
+    }
+
+    #TabNumbers {
+        margin: 293.53px auto 0px;
+        float: none;
+        width: 27.9912109375em;
+        max-width: none;
+        height: 22.828125px;
+        clear: none;
+        color: rgb(0, 0, 0);
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+}
+
+@media only screen and (max-width: 1161px) {
+    #box {
+        height: 350px;
+    }
+
+    #image {
+        margin: 22.08px 0% 29px 36.01%;
+        clear: none;
+        float: left;
+    }
+
+    #image1 {
+        display: none;
+    }
+
+    #image2 {
+        margin-top: 151.171875px;
+        clear: none;
+        margin-bottom: 25px;
+    }
+
+    #TabSocial {
+        clear: none;
+        margin-top: 23.25px;
+        margin-left: 37.85%;
+        margin-right: 7px;
+        float: left;
+    }
+
+    #TabNumbers {
+        margin: 21.08px auto 0px;
+        clear: none;
+        display: block;
+        position: relative;
+        width: 27.9912109375em;
+        top: 0px;
+        left: 0px;
+        float: none;
+    }
+
+    #image3 {
+        float: none;
+        width: 15.047642%;
+        max-width: none;
+        height: 23.890625px;
+        margin-left: auto;
+        margin-top: 72.03px;
+        clear: none;
+        color: rgb(0, 0, 0);
+        position: relative;
+        top: 0px;
+        left: 0px;
+        display: block;
+        margin-right: auto;
+    }
+}
+
+@media only screen and (max-width: 886px) {
+    #TabSocial {
+        margin-left: 32.95%;
+    }
+}
+
+@media only screen and (max-width: 814px) {
+    #TabSocial {
+        margin-left: 30.45%;
+    }
+
+    #image3 {
+        width: 122.48780588px;
+    }
+}
+
+@media only screen and (max-width: 625px) {
+    #TabSocial {
+        margin-right: 15px;
+        margin-left: 22.75%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    #box {
+        height: 200px;
+    }
+
+    #image {
+        margin-top: 12.66px;
+        clear: none;
+        height: 79.1875px;
+        width: 141.578125px;
+        max-width: none;
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #image1 {
+        float: none;
+        width: 279.515625px;
+        max-width: none;
+        height: 37.203125px;
+        margin: -12.05px auto 0px;
+        clear: none;
+        color: rgb(0, 0, 0);
+        display: block;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+    #image2 {
+        display: none;
+    }
+
+    #TabSocial {
+        display: none;
+    }
+
+    #TabNumbers {
+        display: none;
+    }
+
+    #image3 {
+        margin-top: 14.03px;
+        width: 141.35999999999999px;
+    }
+}
+
+@media only screen and (max-width: 368px) {
+    #image1 {
+        margin-top: -12.05px;
+        clear: none;
+    }
+
+    #image3 {
+        margin-top: 15.03px;
+        margin-bottom: 1px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .primaryContainer {
+        width: 100%;
+    }
+}
+

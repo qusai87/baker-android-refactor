@@ -1,0 +1,170 @@
+.primaryContainer {
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    min-height: 100%;
+    width: 87.371512%;
+    background-size: cover;
+    padding: 0px;
+    position: relative;
+    max-width: none;
+    min-width: 0px;
+    background-position: 0% 0%;
+    background-repeat: no-repeat no-repeat;
+}
+
+body {
+    color: rgb(205, 205, 205);
+    background-color: rgb(229, 229, 229);
+}
+
+#text {
+    float: left;
+    font-size: 1.3em;
+    width: 100%;
+    height: auto;
+    text-align: left;
+    font-weight: normal;
+    line-height: 1.5em;
+    margin-left: 0%;
+    margin-top: 28px;
+    clear: none;
+    min-height: 0px;
+    color: rgb(96, 96, 96);
+    padding: 20px;
+}
+
+#textspan1 {
+    float: none;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: 600;
+}
+
+#textspan {
+    float: none;
+    font-size: 1em;
+    line-height: 1em;
+    font-weight: 900;
+}
+
+#image {
+    float: none;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-top: 26px;
+    clear: none;
+    color: rgb(0, 0, 0);
+    margin-right: auto;
+}
+
+#text1 {
+    float: left;
+    font-size: 1em;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-weight: 900;
+    line-height: 1em;
+    margin-left: 0%;
+    margin-top: 31px;
+    clear: none;
+    min-height: 43px;
+    min-width: 0px;
+    color: rgb(102, 102, 102);
+    padding: 26px;
+}
+
+#textspan2 {
+    float: none;
+    font-size: 1em;
+    line-height: 1em;
+    color: rgb(118, 118, 118);
+}
+
+#input {
+    float: none;
+    height: auto;
+    font-size: 1.2em;
+    clear: none;
+    width: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    margin-top: 310px;
+    margin-left: auto;
+    padding: 10px;
+    color: rgb(114, 13, 97);
+    margin-right: auto;
+    display: block;
+}
+
+#input1 {
+    margin: 0px auto;
+    float: none;
+    height: auto;
+    font-size: 1.2em;
+    clear: none;
+    width: auto;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    padding: 10px;
+    color: rgb(114, 13, 97);
+    display: block;
+}
+
+@media only screen and (max-width: 1200px) {
+    .primaryContainer {
+        width: 100%;
+    }
+
+    #text {
+        margin-top: 0px;
+        margin-left: 0%;
+        clear: none;
+        position: relative;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 17px;
+    }
+
+    #input {
+        font-size: 1.2em;
+        margin-top: 295px;
+        margin-left: auto;
+        clear: none;
+        margin-right: auto;
+        float: none;
+    }
+
+    #text1 {
+        margin-left: 0%;
+        clear: none;
+    }
+
+    #input1 {
+        font-size: 1.2em;
+        margin-top: 0px;
+        margin-left: auto;
+        clear: none;
+        margin-right: auto;
+        float: none;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    #input1 {
+        margin-top: 0px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .primaryContainer {
+        width: 100%;
+    }
+}
+
