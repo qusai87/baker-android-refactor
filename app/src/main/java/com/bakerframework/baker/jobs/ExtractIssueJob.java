@@ -35,8 +35,9 @@ import com.bakerframework.baker.model.Issue;
 import com.path.android.jobqueue.Job;
 import com.path.android.jobqueue.Params;
 
-import org.zeroturnaround.zip.ZipUtil;
-import org.zeroturnaround.zip.commons.FileUtils;
+import net.lingala.zip4j.exception.ZipException;
+import net.lingala.zip4j.core.ZipFile;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,15 +71,25 @@ public class ExtractIssueJob extends Job {
         EventBus.getDefault().post(new ExtractIssueProgressEvent(issue, 0));
 
         // Delete directory if exists
-        if (outputDirectory.exists() && outputDirectory.isDirectory()) {
+        /*if (outputDirectory.exists() && outputDirectory.isDirectory()) {
             FileUtils.deleteDirectory(outputDirectory);
-        }
+        }*/
 
         // Prepare progress
         FileInputStream zipFileInputStream = new MonitorFileInputStream(zipFile);
 
         // Unzip file
-        ZipUtil.unpack(zipFileInputStream, outputDirectory);
+        // ZipUtil.unpack(zipFileInputStream, outputDirectory);
+
+        try {
+            ZipFile extactZip = new ZipFile(zipFile);
+//            if (extactZip.isEncrypted()) {
+//                extactZip.setPassword(password);
+//            }
+            extactZip.extractAll(outputDirectory.getAbsolutePath());
+        } catch (ZipException e) {
+            e.printStackTrace();
+        }
 
         // Delete zip file
         if(!this.zipFile.delete()) {
