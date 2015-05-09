@@ -32,7 +32,7 @@
             android:id="@+id/headerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"/>
+            android:layout_weight="35" />
 
         <com.bakerframework.baker.widget.SwipeRefreshScrollLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -40,7 +40,7 @@
             android:id="@+id/swipe_container"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="70"
+            android:layout_weight="65"
             swiperefreshscrolllayout:adapter_view="@+id/shelf_view">
 
             <com.bakerframework.baker.view.ShelfView

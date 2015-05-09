@@ -4,9 +4,9 @@
     <!-- App Configuration -->
     <!--^app_id--><string name="app_id">com.bakerMagazines.mlc</string><!--$app_id-->
     <!--^app_name--><string name="app_name">MLC Publication</string><!--$app_name-->
-    <string name="newstand_manifest_url">http://104.131.86.188:8080/issues/:app_id/:user_id</string>
-    <string name="purchase_confirmation_url">http://104.131.86.188:8080/confirmpurchase/:app_id/:user_id</string>
-    <string name="purchases_url">http://104.131.86.188:8080/purchases/:app_id/:user_id</string>
+    <string name="newstand_manifest_url">http://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/issues/:app_id/:user_id</string>
+    <string name="purchase_confirmation_url">hhttp://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/confirmpurchase/:app_id/:user_id</string>
+    <string name="purchases_url">hhttp://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/purchases/:app_id/:user_id</string>
 
     <!-- Google Play Configuration / In App Billing -->
     <string name="google_play_license_key"></string>
