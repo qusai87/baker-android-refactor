@@ -10,21 +10,21 @@
             android:key="pref_receive_notifications"
             android:title="@string/pref_receive_notifications"
             android:summary="@string/pref_receive_notifications_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <CheckBoxPreference
             android:dependency="pref_receive_notifications"
             android:key="pref_receive_notifications_download"
             android:title="@string/pref_receive_notifications_download"
             android:summary="@string/pref_receive_notifications_download_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
         <CheckBoxPreference
             android:dependency="pref_receive_notifications_download"
             android:key="pref_receive_notifications_download_only_wifi"
             android:title="@string/pref_receive_notifications_download_only_wifi"
             android:summary="@string/pref_receive_notifications_download_only_wifi_summary"
-            android:defaultValue="true" />
+            android:defaultValue="false" />
 
     </PreferenceCategory>
 

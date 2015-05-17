@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:weightSum="100"
     android:paddingLeft="16dp"
-    android:paddingTop="16dp"
+    android:paddingTop="10dp"
     android:paddingRight="16dp">
 
     <ImageView
@@ -94,6 +94,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_issue_download"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 style="@style/abaker_default_button" />
         </LinearLayout>
 
@@ -127,7 +129,7 @@
         <LinearLayout
             android:id="@+id/ready_actions_container"
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="35dp"
             android:visibility="visible"
             android:orientation="horizontal"
             android:paddingTop="3dp">
@@ -137,6 +139,8 @@
                 android:text="@string/lbl_issue_read"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 style="@style/abaker_default_button" />
 
             <Button
@@ -144,6 +148,8 @@
                 android:text="@string/lbl_issue_archive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
                 style="@style/abaker_default_button"/>
         </LinearLayout>
 

@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="20dp"
+                android:verticalSpacing="0dp"
                 android:paddingBottom="20dp"
                 android:clipToPadding="false"
                 android:scrollbarThumbVertical="@drawable/baker_scrollbar_vertical"
