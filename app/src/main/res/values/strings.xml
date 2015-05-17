@@ -3,7 +3,7 @@
 
     <!-- App Configuration -->
     <!--^app_id--><string name="app_id">com.bakerMagazines.mlc</string><!--$app_id-->
-    <!--^app_name--><string name="app_name">New MLC Publication</string><!--$app_name-->
+    <!--^app_name--><string name="app_name">MLC Publication</string><!--$app_name-->
     <string name="newstand_manifest_url">http://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/issues/:app_id/:user_id</string>
     <string name="purchase_confirmation_url">hhttp://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/confirmpurchase/:app_id/:user_id</string>
     <string name="purchases_url">hhttp://www.mlc.edu.jo/magazines/bakercloud-ce-api/index.php/purchases/:app_id/:user_id</string>
@@ -15,7 +15,7 @@
     <!-- UI Messages, Labels and Texts -->
     <string name="msg_exit">Exit</string>
     <string name="msg_closing_app">If you exit now, all downloads will be cancelled, are you sure you want to exit ?</string>
-    <string name="msg_issue_downloading">Download</string>
+    <string name="msg_issue_downloading">Downloading..</string>
     <string name="msg_issue_extracting">Please Wait..</string>
     <string name="msg_issue_deleting">Deleting</string>
     <string name="msg_thumb_description">Thumbnail</string>

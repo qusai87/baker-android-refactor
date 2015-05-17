@@ -84,7 +84,7 @@
         <LinearLayout
             android:id="@+id/idle_actions_container"
             android:layout_width="match_parent"
-            android:layout_height="28dp"
+            android:layout_height="35dp"
             android:visibility="gone"
             android:orientation="horizontal"
             android:paddingTop="3dp">
@@ -94,8 +94,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lbl_issue_download"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 style="@style/abaker_default_button" />
         </LinearLayout>
 
@@ -140,7 +139,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 style="@style/abaker_default_button" />
 
             <Button
@@ -149,7 +148,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="16sp"
+                android:textSize="15sp"
                 style="@style/abaker_default_button"/>
         </LinearLayout>
 
