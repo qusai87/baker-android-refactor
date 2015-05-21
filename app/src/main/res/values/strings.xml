@@ -42,7 +42,7 @@
     <string name="lbl_finish">Finish</string>
 
     <!-- Referrer strings to use with links to open them in the device's internet browser or in the same view from baker. For more information about links: https://github.com/bakerframework/baker/wiki/Managing-links-and-urls -->
-    <string name="url_baker_referrer">baker</string>
+    <string name="url_baker_referrer"></string>
     <string name="url_external_referrer">safari</string>
 
     <!-- Filesystem Path Configuration -->

@@ -384,7 +384,7 @@ public class IssueActivity extends FragmentActivity {
                                 return true;
                             }
                         } else {
-                            stringUrl = url.getPath().substring(url.getPath().lastIndexOf("/") + 1);
+                            stringUrl = stringUrl.substring(stringUrl.indexOf("/") + 2);
                             Log.d(">>>URL_DATA", "FINAL INTERNAL HTML FILENAME = " + stringUrl);
 
                             int index = IssueActivity.this.getJsonBook().getContents().indexOf(stringUrl);
