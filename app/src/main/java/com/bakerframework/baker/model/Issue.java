@@ -34,6 +34,7 @@ import com.bakerframework.baker.jobs.DownloadIssueJob;
 import com.bakerframework.baker.jobs.ExtractIssueJob;
 import com.bakerframework.baker.settings.Configuration;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.solovyev.android.checkout.Sku;
 
@@ -48,6 +49,7 @@ import de.greenrobot.event.EventBus;
 public class Issue {
     private final String name;
     private String productId;
+    private Integer version;
     private String title;
     private String info;
     private String date;
@@ -79,6 +81,22 @@ public class Issue {
     }
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public Integer getVersion() {return version;}
+    public Integer getCachedVersion() {
+        JSONObject obj =  getIssueJsonObject();
+        if (obj != null) {
+            try {
+                return obj.getInt("version");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        return this.version;
+    }
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 
     public String getTitle() {
@@ -230,6 +248,11 @@ public class Issue {
         return !isExtracting() && !getHpubFile().exists() && isBookJsonFilePresent();
     }
 
+    public boolean hasUpdate() {
+
+        return isExtracted() && getVersion()> getCachedVersion();
+    }
+
     public void startExtractIssueJob() {
         extractJob = new ExtractIssueJob(this);
         BakerApplication.getInstance().getJobManager().addJobInBackground(extractJob);
@@ -241,8 +264,16 @@ public class Issue {
         return Configuration.getMagazinesDirectory() + File.separator + name + File.separator + BakerApplication.getInstance().getString(R.string.path_book);
     }
 
+    public String getIssueJsonPath() {
+        return Configuration.getMagazinesDirectory() + File.separator + name + File.separator + "issue_" + BakerApplication.getInstance().getString(R.string.path_book);
+    }
+
     public File getBookJsonFile() {
         return new File(getBookJsonPath());
+    }
+
+    public File getIssueJsonFile() {
+        return new File(getIssueJsonPath());
     }
 
     public boolean isBookJsonFilePresent() {
@@ -254,6 +285,18 @@ public class Issue {
             }
         }else{
             return getBookJsonFile().exists() && getBookJsonFile().isFile();
+        }
+    }
+
+    public boolean isIssueJsonFilePresent() {
+        if(isStandalone()) {
+            try {
+                return Arrays.asList(BakerApplication.getInstance().getAssets().list("books/" + name)).contains("issue.json");
+            } catch (IOException e) {
+                return false;
+            }
+        }else{
+            return getIssueJsonFile().exists() && getIssueJsonFile().isFile();
         }
     }
 
@@ -282,6 +325,21 @@ public class Issue {
             File bookJsonDirectory = new File(Configuration.getMagazinesDirectory(), getName());
             File bookJsonFile = new File(bookJsonDirectory, BakerApplication.getInstance().getString(R.string.path_book));
             return FileHelper.getJsonObjectFromFile(bookJsonFile);
+        }
+    }
+
+    public JSONObject getIssueJsonObject() {
+        if(isStandalone()) {
+            return null;
+        }else{
+            //File issueJsonDirectory = new File(Configuration.getMagazinesDirectory(), getName());
+            //File issueJsonFile = new File(issueJsonDirectory, BakerApplication.getInstance().getString(R.string.path_book));
+            if (isIssueJsonFilePresent()) {
+                File issueJson = getIssueJsonFile();
+                return FileHelper.getJsonObjectFromFile(issueJson);
+
+            }
+            return null;
         }
 
     }

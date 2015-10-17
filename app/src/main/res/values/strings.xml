@@ -34,6 +34,7 @@
     <string name="lbl_action_refresh">Refresh</string>
     <string name="lbl_action_subscribe">Subscribe</string>
     <string name="lbl_issue_download">Download</string>
+    <string name="lbl_issue_update">Update</string>
     <string name="lbl_issue_read">Read</string>
     <string name="lbl_issue_archive">Delete</string>
     <string name="lbl_issue_buy">Buy</string>
@@ -100,8 +101,8 @@
 
     <!-- Plugins -->
     <string-array name="baker_plugins">
-        <item>ParsePlugin</item>
-        <item>GoogleAnalyticsPlugin</item>
+        <!--<item>ParsePlugin</item>-->
+        <!--<item>GoogleAnalyticsPlugin</item>-->
     </string-array>
 
     <!-- Plugin configuration -->

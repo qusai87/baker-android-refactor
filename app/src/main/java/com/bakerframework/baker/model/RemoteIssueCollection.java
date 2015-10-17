@@ -201,6 +201,7 @@ public class RemoteIssueCollection implements IssueCollection {
             // Get issue data from json
             String issueName = jsonString(json.getString("name"));
             String issueProductId = json.isNull("product_id") ? null : jsonString(json.getString("product_id"));
+            Integer version = json.isNull("version") ? 1 : json.getInt("version");
             String issueTitle = jsonString(json.getString("title"));
             String issueInfo = jsonString(json.getString("info"));
             String issueDate = jsonDate(json.getString("date"));
@@ -229,6 +230,7 @@ public class RemoteIssueCollection implements IssueCollection {
             // Set issue data
             issue.setTitle(issueTitle);
             issue.setProductId(issueProductId);
+            issue.setVersion(version);
             issue.setInfo(issueInfo);
             issue.setDate(issueDate);
             issue.setObjDate(issueObjDate);

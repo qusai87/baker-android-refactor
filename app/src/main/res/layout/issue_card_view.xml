@@ -99,6 +99,23 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/update_actions_container"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:paddingTop="3dp">
+
+            <Button
+                android:id="@+id/update_issue_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_issue_update"
+                android:textSize="15sp"
+                style="@style/abaker_default_button" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/purchase_actions_container"
             android:layout_width="match_parent"
             android:layout_height="28dp"

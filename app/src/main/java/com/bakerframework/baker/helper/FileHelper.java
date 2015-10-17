@@ -6,7 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -55,6 +57,21 @@ public class FileHelper {
             return null;
         } catch (IOException e) {
             return null;
+        }
+    }
+
+    public static void createCacheFile(File cacheFile, String json) {
+        try {
+            cacheFile.createNewFile();
+            FileWriter fw = new FileWriter(cacheFile);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(json);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            // on exception null will be returned
+            cacheFile = null;
         }
     }
 

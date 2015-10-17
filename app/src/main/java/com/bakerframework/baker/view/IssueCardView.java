@@ -50,6 +50,7 @@ import com.bakerframework.baker.events.ExtractIssueCompleteEvent;
 import com.bakerframework.baker.events.ExtractIssueErrorEvent;
 import com.bakerframework.baker.events.ExtractIssueProgressEvent;
 import com.bakerframework.baker.events.IssueDataUpdatedEvent;
+import com.bakerframework.baker.helper.FileHelper;
 import com.bakerframework.baker.helper.ImageLoaderHelper;
 import com.bakerframework.baker.jobs.ArchiveIssueJob;
 import com.bakerframework.baker.jobs.ParseBookJsonJob;
@@ -57,6 +58,8 @@ import com.bakerframework.baker.model.Issue;
 import com.bakerframework.baker.R;
 import com.bakerframework.baker.settings.Configuration;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.solovyev.android.checkout.*;
 
 import de.greenrobot.event.EventBus;
@@ -69,6 +72,7 @@ public class IssueCardView extends LinearLayout {
 
     private final int UI_STATE_INITIAL = 0;
     private final int UI_STATE_DOWNLOAD = 1;
+    private final int UI_STATE_UPDATE = 6;
     private final int UI_STATE_EXTRACT = 2;
     private final int UI_STATE_READY = 3;
     private final int UI_STATE_ARCHIVE = 4;
@@ -76,6 +80,7 @@ public class IssueCardView extends LinearLayout {
 
     // Layout elements
     LinearLayout uiIdleActionsContainer;
+    LinearLayout uiUpdateActionsContainer;
     LinearLayout uiPurchaseActionsContainer;
     LinearLayout uiReadyActionsContainer;
     LinearLayout uiProgressBarContainer;
@@ -90,6 +95,7 @@ public class IssueCardView extends LinearLayout {
     Button uiReadIssueButton;
     Button uiArchiveIssueButton;
     Button uiDownloadIssueButton;
+    Button uiUpdateIssueButton;
 
     private Activity parentActivity;
 
@@ -122,6 +128,7 @@ public class IssueCardView extends LinearLayout {
 
         // Register UI elements
         uiIdleActionsContainer = (LinearLayout) findViewById(R.id.idle_actions_container);
+        uiUpdateActionsContainer = (LinearLayout) findViewById(R.id.update_actions_container);
         uiPurchaseActionsContainer = (LinearLayout) findViewById(R.id.purchase_actions_container);
         uiReadyActionsContainer = (LinearLayout) findViewById(R.id.ready_actions_container);
         uiProgressBarContainer = (LinearLayout) findViewById(R.id.progress_bar_container);
@@ -136,6 +143,7 @@ public class IssueCardView extends LinearLayout {
         uiReadIssueButton = (Button) findViewById(R.id.read_issue_button);
         uiArchiveIssueButton = (Button) findViewById(R.id.archive_issue_button);
         uiDownloadIssueButton = (Button) findViewById(R.id.download_issue_button);
+        uiUpdateIssueButton = (Button) findViewById(R.id.update_issue_button);
 
         // Download cover
         ImageLoaderHelper.getImageLoader(context).displayImage(issue.getCover(), uiCoverImage);
@@ -157,6 +165,10 @@ public class IssueCardView extends LinearLayout {
         // Initialize download button click handler
         uiDownloadIssueButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) { downloadIssue(); }
+        });
+
+        uiUpdateIssueButton.setOnClickListener(new OnClickListener() {
+            public void onClick(View v) { updateIssue(); }
         });
 
         // Initialize read button click handler
@@ -196,8 +208,14 @@ public class IssueCardView extends LinearLayout {
 
         // Prepare actions
         if (issue.isExtracted()) {
-            setUIState(UI_STATE_READY);
-            readable = true;
+            if (issue.hasUpdate()) {
+                setUIState(UI_STATE_UPDATE);
+                readable = false;
+            } else {
+                setUIState(UI_STATE_READY);
+                readable = true;
+            }
+
         }else if(issue.getExtractJob() != null && !issue.getExtractJob().isCompleted()) {
             setUIState(UI_STATE_EXTRACT);
             readable = false;
@@ -241,6 +259,10 @@ public class IssueCardView extends LinearLayout {
         }
     }
 
+    private void updateIssue() {
+        downloadIssue();
+    }
+
     /**
      * Deletes and issue from the user device.
      */
@@ -282,6 +304,7 @@ public class IssueCardView extends LinearLayout {
     private void setUIState(int uiState) {
         switch (uiState) {
             case UI_STATE_INITIAL:
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.GONE);
                 if(issue.hasPrice() && !issue.isPurchased()) {
                     uiPurchaseActionsContainer.setVisibility(View.VISIBLE);
@@ -296,14 +319,25 @@ public class IssueCardView extends LinearLayout {
                 break;
             case UI_STATE_DOWNLOAD:
                 uiIdleActionsContainer.setVisibility(View.GONE);
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.GONE);
                 uiPurchaseActionsContainer.setVisibility(View.GONE);
                 uiProgressText.setVisibility(View.VISIBLE);
                 uiProgressBarContainer.setVisibility(View.VISIBLE);
                 uiProgressText.setText(R.string.msg_issue_downloading);
                 break;
+            case UI_STATE_UPDATE:
+                uiIdleActionsContainer.setVisibility(View.GONE);
+                uiUpdateActionsContainer.setVisibility(View.VISIBLE);
+                uiReadyActionsContainer.setVisibility(View.GONE);
+                uiPurchaseActionsContainer.setVisibility(View.GONE);
+                uiProgressText.setVisibility(View.GONE);
+                uiProgressBarContainer.setVisibility(View.GONE);
+                uiProgressText.setText(null);
+                break;
             case UI_STATE_EXTRACT:
                 uiIdleActionsContainer.setVisibility(View.GONE);
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.GONE);
                 uiPurchaseActionsContainer.setVisibility(View.GONE);
                 uiProgressText.setVisibility(View.VISIBLE);
@@ -312,6 +346,7 @@ public class IssueCardView extends LinearLayout {
                 break;
             case UI_STATE_READY:
                 uiIdleActionsContainer.setVisibility(View.GONE);
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.VISIBLE);
                 uiPurchaseActionsContainer.setVisibility(View.GONE);
                 uiProgressText.setVisibility(View.GONE);
@@ -320,6 +355,7 @@ public class IssueCardView extends LinearLayout {
                 break;
             case UI_STATE_ARCHIVE:
                 uiIdleActionsContainer.setVisibility(View.GONE);
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.GONE);
                 uiProgressText.setVisibility(View.VISIBLE);
                 uiProgressBarContainer.setVisibility(View.VISIBLE);
@@ -327,6 +363,7 @@ public class IssueCardView extends LinearLayout {
                 break;
             case UI_STATE_ERROR:
                 uiIdleActionsContainer.setVisibility(View.VISIBLE);
+                uiUpdateActionsContainer.setVisibility(View.GONE);
                 uiReadyActionsContainer.setVisibility(View.GONE);
                 uiPurchaseActionsContainer.setVisibility(View.GONE);
                 uiProgressText.setVisibility(View.VISIBLE);
@@ -372,6 +409,14 @@ public class IssueCardView extends LinearLayout {
         if(event.getIssue() == issue) {
             // Trigger unzipping
             extractZip();
+            JSONObject jsonObj = new JSONObject();
+            try {
+                jsonObj.put("version", issue.getVersion());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            FileHelper.createCacheFile(issue.getIssueJsonFile(),jsonObj.toString());
         }
     }
 
