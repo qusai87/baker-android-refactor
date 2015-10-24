@@ -21,7 +21,7 @@ android {
         applicationId project.property("application-id")
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 3
+        versionCode 4
         versionName "2.0"
     }
 
