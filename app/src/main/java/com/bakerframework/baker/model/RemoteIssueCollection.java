@@ -192,7 +192,6 @@ public class RemoteIssueCollection implements IssueCollection {
         JSONArray jsonCategories;
         List<String> categories;
         List<String> issueNameList = new ArrayList<>();
-
         // Loop through issues
         int length = jsonArray.length();
         for (int i = 0; i < length; i++) {

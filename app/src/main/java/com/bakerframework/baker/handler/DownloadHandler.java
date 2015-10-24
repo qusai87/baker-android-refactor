@@ -43,6 +43,7 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Date;
 
 public class DownloadHandler {
     private final String url;
@@ -54,7 +55,8 @@ public class DownloadHandler {
     private InputStream inputStream;
 
     public DownloadHandler(String url) {
-        this.url = url;
+        int i = (int) (new Date().getTime()/1000);
+        this.url = url+"?v="+i;
         this.percentComplete = 0;
     }
 
@@ -108,6 +110,7 @@ public class DownloadHandler {
         // Prepare Download
         URL url = new URL(this.url);
         connection = (HttpURLConnection) url.openConnection();
+        connection.addRequestProperty("Cache-Control", "no-cache");
         connection.setUseCaches(false);
 
         // Prepare streams
@@ -148,7 +151,6 @@ public class DownloadHandler {
                 output.write(buffer, 0, bytesRead);
             }
         }
-
         // Close output
         output.close();
     }

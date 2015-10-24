@@ -1,5 +1,7 @@
 package com.bakerframework.baker.helper;
 
+import android.util.Log;
+
 import com.bakerframework.baker.BakerApplication;
 
 import org.json.JSONArray;
@@ -93,7 +95,9 @@ public class FileHelper {
 
     public static JSONArray getJsonArrayFromFile(File file) {
         try {
-            return new JSONArray(getContentsFromFile(file));
+            String content = getContentsFromFile(file);
+            Log.d("JSON : ", content);
+            return new JSONArray(content);
         } catch (JSONException e) {
             return null;
         }
