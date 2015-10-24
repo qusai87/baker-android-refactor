@@ -35,7 +35,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
 import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -53,10 +52,11 @@ import com.bakerframework.baker.BakerApplication;
 import com.bakerframework.baker.R;
 import com.bakerframework.baker.model.BookJson;
 import com.bakerframework.baker.settings.Configuration;
+import com.bakerframework.baker.view.CustomViewPager;
 import com.bakerframework.baker.view.CustomWebView;
-import com.bakerframework.baker.view.WebViewFragment;
 import com.bakerframework.baker.view.WebViewFragmentPagerAdapter;
 import com.viewpagerindicator.LinePageIndicator;
+
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -72,7 +72,7 @@ public class IssueActivity extends FragmentActivity {
 
 	private GestureDetectorCompat gestureDetector;
 	private WebViewFragmentPagerAdapter webViewFragmentPagerAdapter;
-	private ViewPager viewPager;
+	private CustomViewPager viewPager;
     private BookJson jsonBook;
 
     public final static String MODAL_URL = "com.bakerframework.baker.MODAL_URL";
@@ -84,7 +84,7 @@ public class IssueActivity extends FragmentActivity {
         return this.jsonBook;
     }
 
-    public ViewPager getViewPager() {
+    public CustomViewPager getViewPager() {
         return this.viewPager;
     }
 
@@ -105,7 +105,7 @@ public class IssueActivity extends FragmentActivity {
 		setContentView(R.layout.issue_activity);
 
         // Initialize Pager
-        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (CustomViewPager) findViewById(R.id.pager);
 
         // Get issue
         Intent intent = getIntent();
@@ -292,10 +292,12 @@ public class IssueActivity extends FragmentActivity {
         //Bind the title indicator to the adapter
         LinePageIndicator indicator = (LinePageIndicator)findViewById(R.id.indicator);
         indicator.setViewPager(viewPager);
-        indicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
+        indicator.setOnPageChangeListener(new CustomViewPager.SimpleOnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
+                viewPager.setScrollEnabled(true);
+                viewPager.setSwipeEnabled(true);
                 Log.d(this.getClass().getName(), "Loading page at index: " + position);
                 detectFirstOrLastPage();
             }
@@ -338,8 +340,8 @@ public class IssueActivity extends FragmentActivity {
 		viewIndex.getSettings().setUseWideViewPort(true);
 		viewIndex.setWebViewClient(new WebViewClient() {
 
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String stringUrl) {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String stringUrl) {
 
                 // mailto links will be handled by the OS.
                 if (stringUrl.startsWith("mailto:")) {
@@ -405,13 +407,16 @@ public class IssueActivity extends FragmentActivity {
                         }
                     } catch (MalformedURLException ex) {
                         Log.d(">>>URL_DATA", ex.getMessage());
-                    } catch (UnsupportedEncodingException ignored) {}
+                    } catch (UnsupportedEncodingException ignored) {
+                    }
                 }
 
-				return true;
-			}
-		});
+                return true;
+            }
+        });
+
 		viewIndex.loadUrl(path + book.getMagazineName() + File.separator + "index.html");
+
         viewIndex.setBackgroundColor(0x00000000);
         viewIndex.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
 	}

@@ -39,6 +39,7 @@ import com.bakerframework.baker.R;
 import com.bakerframework.baker.activity.IssueActivity;
 import com.bakerframework.baker.settings.Configuration;
 
+import org.xwalk.core.JavascriptInterface;
 import org.xwalk.core.XWalkResourceClient;
 import org.xwalk.core.XWalkUIClient;
 import org.xwalk.core.XWalkView;
@@ -49,6 +50,38 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Map;
 
+class JsInterface {
+    private static final String TAG = "JsInterface";
+    private WebViewFragment context;
+    private XWalkView xWalkWebView;
+
+    public JsInterface(WebViewFragment c, XWalkView xWalkWebView) {
+        context = c;
+        this.xWalkWebView = xWalkWebView;
+    }
+
+    @JavascriptInterface
+    public void disablePager() {
+        IssueActivity activity = (IssueActivity)context.getActivity();
+        CustomViewPager pager = activity.getViewPager();
+        if (context.getUserVisible()) {
+            pager.setSwipeEnabled(false);
+            pager.setScrollEnabled(false);
+            Log.d(TAG, "disablePager");
+        }
+    }
+
+    @JavascriptInterface
+    public void enablePager() {
+        IssueActivity activity = (IssueActivity) context.getActivity();
+        CustomViewPager pager = activity.getViewPager();
+        if (context.getUserVisible()) {
+            pager.setSwipeEnabled(true);
+            pager.setScrollEnabled(true);
+            Log.d(TAG, "enablePager");
+        }
+    }
+}
 public class WebViewFragment extends Fragment {
 
     private XWalkView webView;
@@ -71,7 +104,6 @@ public class WebViewFragment extends Fragment {
             isInitialized = true;
             initializeWebView();
         }
-
 		return rootView;
 	}
 
@@ -93,7 +125,7 @@ public class WebViewFragment extends Fragment {
             @Override
             public boolean shouldOverrideUrlLoading(XWalkView view, String stringUrl) {
 
-                if(stringUrl.equals(baseUrl)) {
+                if (stringUrl.equals(baseUrl)) {
                     return false;
                 }
 
@@ -164,17 +196,24 @@ public class WebViewFragment extends Fragment {
 
             @Override
             public void onPageLoadStopped(XWalkView view, String url, LoadStatus status) {
-                if(!url.isEmpty() && status == LoadStatus.FINISHED) {
-                    if(isUserVisible) {
+                if (!url.isEmpty() && status == LoadStatus.FINISHED) {
+                    if (isUserVisible) {
+                        Log.d("js","user Visible");
                         webView.resumeTimers();
-                    }else{
+                    } else {
+                        Log.d("js","user Hidden");
                         webView.pauseTimers();
                     }
 
                 }
             }
         });
+
+        webView.addJavascriptInterface(new JsInterface(this, webView), "JsInterface");
+
+        webView.clearCache(true);
         webView.load(baseUrl, null);
+        //webView.evaluateJavascript("window.JsInterface.showToast();",null);
     }
 
     @Override
@@ -185,7 +224,9 @@ public class WebViewFragment extends Fragment {
         }
     }
 
-
+    public boolean getUserVisible () {
+        return isUserVisible;
+    }
 	
 	public String getUrl() {
 		return this.webView.getUrl();
@@ -194,5 +235,5 @@ public class WebViewFragment extends Fragment {
     public XWalkView getWebView() {
         return webView;
     }
-
 }
+

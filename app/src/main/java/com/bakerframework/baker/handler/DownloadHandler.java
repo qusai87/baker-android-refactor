@@ -26,6 +26,8 @@
  */
 package com.bakerframework.baker.handler;
 
+import android.util.Log;
+
 import com.bakerframework.baker.BakerApplication;
 import com.bakerframework.baker.R;
 
@@ -58,6 +60,7 @@ public class DownloadHandler {
 
     public void download(File targetFile) throws Exception {
         this.targetFile = targetFile;
+        Log.i("Download", targetFile.getAbsolutePath());
         try {
             createTargetFile();
             prepareDownload();
@@ -105,7 +108,7 @@ public class DownloadHandler {
         // Prepare Download
         URL url = new URL(this.url);
         connection = (HttpURLConnection) url.openConnection();
-        connection.setUseCaches(true);
+        connection.setUseCaches(false);
 
         // Prepare streams
         totalBytes = connection.getContentLength();

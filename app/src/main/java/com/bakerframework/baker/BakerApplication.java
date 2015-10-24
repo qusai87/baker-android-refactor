@@ -104,6 +104,7 @@ public class BakerApplication extends Application {
 
         // Possible XWalk fix
         XWalkPreferences.setValue(XWalkPreferences.ANIMATABLE_XWALK_VIEW, false);
+        XWalkPreferences.setValue("enable-javascript", true);
 
         configureJobManager();
         pluginManager = new PluginManager();
