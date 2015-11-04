@@ -209,6 +209,7 @@ public class RemoteIssueCollection implements IssueCollection {
             String issueUrl = jsonString(json.getString("url"));
             int issueSize = json.has("size") ? json.getInt("size") : 0;
 
+            // TODO : need to check deleted old issues
             Issue issue;
             if(issueMap.containsKey(issueName)) {
                 // Get issue from issue map
