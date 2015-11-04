@@ -102,7 +102,7 @@ public class ApiRequestHandler {
     }
 
     public void onError(Throwable throwable) {
-        Log.e("ApiRequestHandler", throwable.getMessage());
+        Log.e("MLC-APP "+this.getClass().getName(), throwable.getMessage());
     }
 
     public String getResponseText() {

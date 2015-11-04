@@ -64,7 +64,7 @@ public class ImageLoaderHelper {
             ImageLoader.getInstance().init(config);
             return ImageLoader.getInstance();
         } catch (Exception ex) {
-            Log.e("ImageLoaderHelper", "Error loading image: " + ex);
+            Log.e("MLC ImageLoaderHelper", "Error loading image: " + ex);
             return null;
         }
     }

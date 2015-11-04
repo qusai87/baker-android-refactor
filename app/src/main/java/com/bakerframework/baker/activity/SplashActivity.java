@@ -104,7 +104,7 @@ public class SplashActivity extends Activity implements LicenceManagerDelegate {
     @Override
     public void onLicenceInvalid(int reason) {
         // Invalid licence
-        Log.i("LICENSING", "Invalid licence: " + reason);
+        Log.i("MLC-APP "+this.getClass().getName(), "Invalid licence: " + reason);
         new AlertDialog.Builder(SplashActivity.this)
                 .setTitle(getString(R.string.msg_exit))
                 .setMessage(getString(R.string.err_application_license_problem))

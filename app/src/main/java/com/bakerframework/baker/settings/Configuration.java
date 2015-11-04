@@ -73,7 +73,7 @@ public class Configuration {
     public static final String PREF_RECEIVE_NOTIFICATIONS_DOWNLOAD_ONLY_WIFI = "pref_receive_notifications_download_only_wifi";
 
     // Logging
-    private static final String tag = "BakerConfiguration";
+    private static final String tag = "MLC BakerConfiguration";
 
     // File and directory handling settings
     public static final String MAGAZINES_FILES_DIR = "issues";

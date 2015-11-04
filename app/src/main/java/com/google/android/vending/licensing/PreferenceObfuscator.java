@@ -24,7 +24,7 @@ import android.util.Log;
  */
 public class PreferenceObfuscator {
 
-    private static final String TAG = "PreferenceObfuscator";
+    private static final String TAG = "MLC PreferenceObfuscator";
 
     private final SharedPreferences mPreferences;
     private final Obfuscator mObfuscator;

@@ -45,7 +45,7 @@ import android.util.Log;
  */
 public class ServerManagedPolicy implements Policy {
 
-    private static final String TAG = "ServerManagedPolicy";
+    private static final String TAG = "MLC ServerManagedPolicy";
     private static final String PREFS_FILE = "com.android.vending.licensing.ServerManagedPolicy";
     private static final String PREF_LAST_RESPONSE = "lastResponse";
     private static final String PREF_VALIDITY_TIMESTAMP = "validityTimestamp";

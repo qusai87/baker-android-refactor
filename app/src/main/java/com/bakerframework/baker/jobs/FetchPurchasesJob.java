@@ -58,7 +58,7 @@ public class FetchPurchasesJob extends Job {
 
     @Override
     public void onRun() throws Throwable {
-        Log.d("FetchPurchasesJob", "fetching purchases from " + url);
+        Log.d("MLC-APP "+this.getClass().getName(), "fetching purchases from " + url);
         String purchasesResult = "";
 
         // Build request handler
@@ -79,7 +79,7 @@ public class FetchPurchasesJob extends Job {
 
     @Override
     protected boolean shouldReRunOnThrowable(Throwable throwable) {
-        Log.e("FetchPurchasesJob", throwable.getLocalizedMessage());
+        Log.e("MLC-APP "+this.getClass().getName(), throwable.getLocalizedMessage());
         completed = true;
         EventBus.getDefault().post(new FetchPurchasesErrorEvent(throwable));
         return false;

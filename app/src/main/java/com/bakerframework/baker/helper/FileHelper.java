@@ -62,18 +62,36 @@ public class FileHelper {
         }
     }
 
+    private static void createNewFile(File targetFile) throws Exception {
+        // Create directory structure
+        if(!targetFile.getParentFile().exists() || !targetFile.getParentFile().isDirectory()) {
+            targetFile.getParentFile().mkdirs();
+        }
+        if(!targetFile.exists()) {
+            targetFile.createNewFile();
+        }
+        if(!targetFile.exists()) {
+            throw new Exception("Unable to create target file");
+        }
+    }
+
     public static void createCacheFile(File cacheFile, String json) {
         try {
-            cacheFile.createNewFile();
+            Log.d("MLC-APP FileHelper", "Creating Cache File :" + cacheFile.getAbsolutePath());
+            createNewFile(cacheFile);
             FileWriter fw = new FileWriter(cacheFile);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(json);
             bw.close();
+            Log.d("MLC-APP FileHelper", "Create Cache File Success" + json);
         } catch (IOException e) {
             e.printStackTrace();
-
+            Log.e("MLC-APP FileHelper" , "Create Cache File failed " + e.getMessage());
             // on exception null will be returned
             cacheFile = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("MLC-APP FileHelper", "Create Cache File failed " + e.getMessage());
         }
     }
 
@@ -96,7 +114,7 @@ public class FileHelper {
     public static JSONArray getJsonArrayFromFile(File file) {
         try {
             String content = getContentsFromFile(file);
-            Log.d("JSON : ", content);
+            Log.d("MLC FileHelper", content);
             return new JSONArray(content);
         } catch (JSONException e) {
             return null;

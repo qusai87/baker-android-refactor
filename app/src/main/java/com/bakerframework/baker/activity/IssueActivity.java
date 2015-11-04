@@ -122,7 +122,7 @@ public class IssueActivity extends FragmentActivity {
 
 			jsonBook = new BookJson();
             jsonBook.setIssueName(issueName);
-            Log.d(this.getClass().toString(), "THE RAW BOOK.JSON IS: " + intent.getStringExtra(Configuration.BOOK_JSON_KEY));
+            Log.d("MLC-APP "+this.getClass().toString(), "THE RAW BOOK.JSON IS: " + intent.getStringExtra(Configuration.BOOK_JSON_KEY));
             jsonBook.fromJsonString(intent.getStringExtra(Configuration.BOOK_JSON_KEY));
 
             this.setOrientation(jsonBook.getOrientation());
@@ -153,14 +153,14 @@ public class IssueActivity extends FragmentActivity {
         int currentItem = this.viewPager.getCurrentItem();
 
         if (currentItem == (allItems - 1)) {
-            Log.d(this.getClass().getName(), "Last page detected.");
+            Log.d("MLC-APP "+this.getClass().getName(), "Last page detected.");
             ((Button)findViewById(R.id.buttonNext)).setText(getString(R.string.lbl_finish));
 
             if (allItems > 1) {
                 findViewById(R.id.buttonBack).setVisibility(View.VISIBLE);
             }
         } else if (currentItem == 0) {
-            Log.d(this.getClass().getName(), "First page detected.");
+            Log.d("MLC-APP "+this.getClass().getName(), "First page detected.");
             findViewById(R.id.buttonBack).setVisibility(View.GONE);
             ((Button)findViewById(R.id.buttonNext)).setText(getString(R.string.lbl_next));
         } else {
@@ -174,7 +174,7 @@ public class IssueActivity extends FragmentActivity {
         int nextItem = currentItem + 1;
         int allItems = this.getJsonBook().getContents().size();
 
-        Log.d(this.getClass().getName(), "All items: " + allItems + ", current item: " + currentItem + ", next item: " + nextItem);
+        Log.d("MLC-APP "+this.getClass().getName(), "All items: " + allItems + ", current item: " + currentItem + ", next item: " + nextItem);
 
         if (nextItem < allItems) {
             this.viewPager.setCurrentItem(nextItem);
@@ -189,7 +189,7 @@ public class IssueActivity extends FragmentActivity {
         int nextItem = currentItem - 1;
         int allItems = this.getJsonBook().getContents().size();
 
-        Log.d(this.getClass().getName(), "All items: " + allItems + ", current item: " + currentItem + ", next item: " + nextItem);
+        Log.d("MLC-APP "+this.getClass().getName(), "All items: " + allItems + ", current item: " + currentItem + ", next item: " + nextItem);
 
         if (nextItem >= 0) {
             this.viewPager.setCurrentItem(nextItem);
@@ -282,7 +282,7 @@ public class IssueActivity extends FragmentActivity {
 
         // Set asset path
         final String path = ENABLE_TUTORIAL ? Configuration.getTutorialAssetPath() : Configuration.getMagazineAssetPath();
-        Log.d(this.getClass().toString(), "THE PATH FOR LOADING THE PAGES WILL BE: " + path);
+        Log.d("MLC-APP "+this.getClass().toString(), "THE PATH FOR LOADING THE PAGES WILL BE: " + path);
 
 		// ViewPager and its adapters use support library fragments, so use getSupportFragmentManager.
 		webViewFragmentPagerAdapter = new WebViewFragmentPagerAdapter(getSupportFragmentManager(), book, path, this);
@@ -298,7 +298,7 @@ public class IssueActivity extends FragmentActivity {
                 super.onPageSelected(position);
                 viewPager.setScrollEnabled(true);
                 viewPager.setSwipeEnabled(true);
-                Log.d(this.getClass().getName(), "Loading page at index: " + position);
+                Log.d("MLC-APP "+this.getClass().getName(), "Loading page at index: " + position);
                 detectFirstOrLastPage();
             }
         });
@@ -372,7 +372,7 @@ public class IssueActivity extends FragmentActivity {
                         // Aaaaand that was the process of removing the referrer from the query string.
 
                         if (!url.getProtocol().equals("file")) {
-                            Log.d("REFERRER>>>", "THE REFERRER IS: " + referrer);
+                            Log.d("MLC-APP "+"REFERRER>>>", "THE REFERRER IS: " + referrer);
                             if (referrer.toLowerCase().equals(IssueActivity.this.getString(R.string.url_external_referrer))) {
                                 Uri uri = Uri.parse(stringUrl);
                                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
@@ -387,12 +387,12 @@ public class IssueActivity extends FragmentActivity {
                             }
                         } else {
                             stringUrl = stringUrl.substring(stringUrl.indexOf("/") + 2);
-                            Log.d(">>>URL_DATA", "FINAL INTERNAL HTML FILENAME = " + stringUrl);
+                            Log.d("MLC-APP "+">>>URL_DATA", "FINAL INTERNAL HTML FILENAME = " + stringUrl);
 
                             int index = IssueActivity.this.getJsonBook().getContents().indexOf(stringUrl);
 
                             if (index != -1) {
-                                Log.d(this.getClass().toString(), "Index to load: " + index + ", page: " + stringUrl);
+                                Log.d("MLC-APP "+this.getClass().toString(), "Index to load: " + index + ", page: " + stringUrl);
                                 IssueActivity.this.getViewPager().setCurrentItem(index);
                                 view.setVisibility(View.GONE);
                             } else {
@@ -406,7 +406,7 @@ public class IssueActivity extends FragmentActivity {
                             }
                         }
                     } catch (MalformedURLException ex) {
-                        Log.d(">>>URL_DATA", ex.getMessage());
+                        Log.d("MLC-APP "+">>>URL_DATA", ex.getMessage());
                     } catch (UnsupportedEncodingException ignored) {
                     }
                 }

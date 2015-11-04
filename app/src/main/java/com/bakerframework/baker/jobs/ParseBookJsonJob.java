@@ -45,17 +45,17 @@ public class ParseBookJsonJob extends Job {
         super(new Params(Priority.MID).setPersistent(false).setGroupId(issue.getName()));
         this.issue = issue;
         this.completed = false;
-        Log.i("ParseBookJsonJob", "JOB CREATED");
+        Log.i("MLC-APP "+this.getClass().getName(), "JOB CREATED");
     }
 
     @Override
     public void onAdded() {
-        Log.i("ParseBookJsonJob", "JOB ADDED");
+        Log.i("MLC-APP "+this.getClass().getName(), "JOB ADDED");
     }
 
     @Override
     public void onRun() throws Throwable {
-        Log.i("ParseBookJsonJob", "start");
+        Log.i("MLC-APP "+this.getClass().getName(), "start");
 
         // Create json result
         BookJson bookJson = new BookJson();
@@ -63,7 +63,7 @@ public class ParseBookJsonJob extends Job {
 
         // Post complete event
         completed = true;
-        Log.i("ParseBookJsonJob", "completed");
+        Log.i("MLC-APP "+this.getClass().getName(), "completed");
         EventBus.getDefault().post(new ParseBookJsonCompleteEvent(issue, bookJson));
     }
 
@@ -75,9 +75,9 @@ public class ParseBookJsonJob extends Job {
     @Override
     protected boolean shouldReRunOnThrowable(Throwable throwable) {
         if(throwable != null && throwable.getLocalizedMessage() != null) {
-            Log.e("ParseBookJsonJob", throwable.getLocalizedMessage());
+            Log.e("MLC-APP "+this.getClass().getName(), throwable.getLocalizedMessage());
         }else{
-            Log.e("ParseBookJsonJob", "An unknown error occured.");
+            Log.e("MLC-APP "+this.getClass().getName(), "An unknown error occured.");
         }
 
         EventBus.getDefault().post(new ParseBookJsonErrorEvent(issue, throwable));

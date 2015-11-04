@@ -55,7 +55,7 @@ import java.util.Set;
  * developer account. The public key is obtainable from the publisher site.
  */
 public class LicenseChecker implements ServiceConnection {
-    private static final String TAG = "LicenseChecker";
+    private static final String TAG = "MLC LicenseChecker";
 
     private static final String KEY_FACTORY_ALGORITHM = "RSA";
 

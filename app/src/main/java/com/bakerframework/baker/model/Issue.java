@@ -249,7 +249,6 @@ public class Issue {
     }
 
     public boolean hasUpdate() {
-
         return isExtracted() && getVersion()> getCachedVersion();
     }
 

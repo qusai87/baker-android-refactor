@@ -139,7 +139,7 @@ public class LocalIssueCollection implements IssueCollection {
     private void readStandaloneIssues(final ArrayList<String> issues) {
         JSONArray jsonArray = new JSONArray();
         for (String issueFileName : issues) {
-            Log.d(this.getClass().getName(), "The file is: " + issueFileName);
+            Log.d("MLC-APP "+this.getClass().getName(), "The file is: " + issueFileName);
             jsonArray.put(this.getIssueData(issueFileName));
         }
         try {
@@ -176,7 +176,7 @@ public class LocalIssueCollection implements IssueCollection {
                 line = reader.readLine();
             } while (line != null);
 
-            Log.d(this.getClass().getName(), "The book.json read was: " + jsonString.toString());
+            Log.d("MLC-APP "+this.getClass().getName(), "The book.json read was: " + jsonString.toString());
             JSONObject jsonRaw = new JSONObject(jsonString.toString());
             result.put("title", jsonRaw.getString("title"));
             result.put("url", jsonRaw.getString("url"));
@@ -185,9 +185,9 @@ public class LocalIssueCollection implements IssueCollection {
             result.put("date", jsonRaw.getString("date"));
 
         } catch (JSONException ex) {
-            Log.e(this.getClass().getName(), "Error getting issue information from " + issueName, ex);
+            Log.e("MLC-APP "+this.getClass().getName(), "Error getting issue information from " + issueName, ex);
         } catch (IOException ex) {
-            Log.e(this.getClass().getName(), "Error getting issue information from " + issueName, ex);
+            Log.e("MLC-APP "+this.getClass().getName(), "Error getting issue information from " + issueName, ex);
         } finally {
             try {
                 reader.close();
@@ -210,13 +210,13 @@ public class LocalIssueCollection implements IssueCollection {
                 fileName = path.concat(File.separator).concat(asset);
                 if (assetManager.list(fileName).length > 0) {
                     if (this.hasBookJson(fileName)) {
-                        Log.d(this.getClass().getName(), "Valid issue found: " + fileName);
+                        Log.d("MLC-APP "+this.getClass().getName(), "Valid issue found: " + fileName);
                         issues.add(asset);
                     }
                 }
             }
         } catch (Exception ex) {
-            Log.e(this.getClass().getName(), "Error getting issues from assets", ex);
+            Log.e("MLC-APP "+this.getClass().getName(), "Error getting issues from assets", ex);
         }
         return issues;
     }
@@ -237,7 +237,7 @@ public class LocalIssueCollection implements IssueCollection {
                     inputStream.close();
                 }
             } catch (IOException e) {
-                Log.e(this.getClass().getName(), "Error opening the book.json for " + issuePath);
+                Log.e("MLC-APP "+this.getClass().getName(), "Error opening the book.json for " + issuePath);
             }
         }
         return result;

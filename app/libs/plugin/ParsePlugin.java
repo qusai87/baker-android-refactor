@@ -53,9 +53,9 @@ public class ParsePlugin implements BakerPlugin {
             @Override
             public void done(ParseException e) {
                 if (e == null) {
-                    Log.d("ParsePlugin", "successfully subscribed to the broadcast channel.");
+                    Log.d("MLC ParsePlugin", "successfully subscribed to the broadcast channel.");
                 } else {
-                    Log.e("ParsePlugin", "failed to subscribe for push", e);
+                    Log.e("MLC ParsePlugin", "failed to subscribe for push", e);
                 }
             }
         });

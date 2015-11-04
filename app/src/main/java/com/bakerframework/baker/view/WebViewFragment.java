@@ -51,7 +51,7 @@ import java.net.URL;
 import java.util.Map;
 
 class JsInterface {
-    private static final String TAG = "JsInterface";
+    private static final String TAG = "MLC JsInterface";
     private WebViewFragment context;
     private XWalkView xWalkWebView;
 
@@ -171,7 +171,7 @@ public class WebViewFragment extends Fragment {
                             stringUrl = url.getPath().substring(url.getPath().lastIndexOf("/") + 1);
                             int index = ((IssueActivity) WebViewFragment.this.getActivity()).getJsonBook().getContents().indexOf(stringUrl);
                             if (index != -1) {
-                                Log.d(this.getClass().toString(), "Index to load: " + index + ", page: " + stringUrl);
+                                Log.d("MLC-APP "+this.getClass().getName(), "Index to load: " + index + ", page: " + stringUrl);
                                 ((IssueActivity) WebViewFragment.this.getActivity()).getViewPager().setCurrentItem(index);
                                 view.setVisibility(View.GONE);
                             } else {
@@ -183,7 +183,7 @@ public class WebViewFragment extends Fragment {
                             }
                         }
                     } catch (MalformedURLException | UnsupportedEncodingException ex) {
-                        Log.d(">>>URL_DATA", ex.getMessage());
+                        Log.d("MLC-APP "+this.getClass().getName(), ex.getMessage());
                     }
                 }
 
@@ -198,10 +198,10 @@ public class WebViewFragment extends Fragment {
             public void onPageLoadStopped(XWalkView view, String url, LoadStatus status) {
                 if (!url.isEmpty() && status == LoadStatus.FINISHED) {
                     if (isUserVisible) {
-                        Log.d("js","user Visible");
+                        Log.d("MLC-APP JS"+this.getClass().getName(),"user Visible");
                         webView.resumeTimers();
                     } else {
-                        Log.d("js","user Hidden");
+                        Log.d("MLC-APP JS"+this.getClass().getName(),"user Hidden");
                         webView.pauseTimers();
                     }
 

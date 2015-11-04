@@ -178,11 +178,11 @@ public class RemoteIssueCollection implements IssueCollection {
             EventBus.getDefault().post(new IssueCollectionLoadedEvent());
 
         } catch (JSONException e) {
-            Log.e(this.getClass().getName(), "processing error (invalid json): " + e);
+            Log.e("MLC-APP "+this.getClass().getName(), "processing error (invalid json): " + e);
         } catch (IOException e) {
-            Log.e(this.getClass().getName(), "processing error (buffer error): " + e);
+            Log.e("MLC-APP "+this.getClass().getName(), "processing error (buffer error): " + e);
         } catch (ParseException e) {
-            Log.e(this.getClass().getName(), "processing error (parse error): " + e);
+            Log.e("MLC-APP "+this.getClass().getName(), "processing error (parse error): " + e);
         }
 
     }
@@ -319,7 +319,7 @@ public class RemoteIssueCollection implements IssueCollection {
                     }
                 }
             } else {
-                Log.e(getClass().getName(), "Error: " + R.string.err_purchase_not_possible);
+                Log.e("MLC-APP "+this.getClass().getName(), "Error: " + R.string.err_purchase_not_possible);
             }
         }
 
@@ -395,7 +395,7 @@ public class RemoteIssueCollection implements IssueCollection {
 
     // @SuppressWarnings("UnusedDeclaration")
     public void onEventMainThread(DownloadManifestErrorEvent event) {
-        Log.i("IssueCollection", "DownloadManifestErrorEvent");
+        Log.i("MLC-APP "+this.getClass().getName(), "DownloadManifestErrorEvent");
         if(isCacheAvailable()) {
             processManifestFile(getCachedFile());
         }else{

@@ -62,7 +62,7 @@ public class ArchiveIssueJob extends Job {
 
         // Post complete event
         completed = true;
-        Log.i("ArchiveIssueJob", "completed");
+        Log.i("MLC-APP "+this.getClass().getName(), "completed");
         EventBus.getDefault().post(new ArchiveIssueCompleteEvent(issue));
     }
 

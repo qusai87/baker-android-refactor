@@ -123,7 +123,7 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
 
         // Initialize tutorial
         if(Configuration.getPrefFirstTimeRun()) {
-            Log.d(this.getClass().getName(), "First time app running, launching tutorial.");
+            Log.d("MLC-APP "+this.getClass().getName(), "First time app running, launching tutorial.");
             showAppUsage();
         }
 
@@ -221,7 +221,7 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
         @Override
         public void onError(int response, @NonNull Exception e) {
             // @TODO: add alert dialog or logging
-            Log.e("ShelfActivity", e.getMessage());
+            Log.e("MLC-APP "+this.getClass().getName(), e.getMessage());
         }
     }
 
@@ -263,6 +263,10 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
         } else if (itemId == R.id.action_refresh) {
             swipeRefreshLayout.setRefreshing(true);
             this.onRefresh();
+            for (int i = 0; i < shelfView.getChildCount(); i++) {
+                IssueCardView issueCardView = (IssueCardView) shelfView.getChildAt(i);
+                issueCardView.redraw();
+            }
             return true;
         } else if (itemId == R.id.action_subscribe) {
             if (BakerApplication.getInstance().isNetworkConnected()) {
@@ -414,7 +418,7 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
             intent.putExtra(Configuration.ISSUE_ENABLE_TUTORIAL, true);
             startActivityForResult(intent, STANDALONE_MAGAZINE_ACTIVITY_FINISH);
         } catch (JSONException e) {
-            Log.e(this.getClass().getName(), "Error parsing book json", e);
+            Log.e("MLC-APP "+this.getClass().getName(), "Error parsing book json", e);
         }
 
     }
@@ -425,7 +429,7 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
                 IssueCardView issueCardView = (IssueCardView) shelfView.getChildAt(i);
                 if(issueCardView.getIssue().isDownloaded() && !issueCardView.getIssue().isDownloading() && !issueCardView.getIssue().isExtracted() && !issueCardView.getIssue().isExtracting()) {
                     // Continue issue extraction
-                    Log.d(this.getClass().toString(), "Continue extract of " + issueCardView.getIssue().getName());
+                    Log.d("MLC-APP "+this.getClass().getName(), "Continue extract of " + issueCardView.getIssue().getName());
                     issueCardView.extractZip();
                 }
             }
@@ -455,7 +459,7 @@ public class ShelfActivity extends ActionBarActivity implements SwipeRefreshLayo
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.d(this.getClass().getName(), "MagazineActivity finished, resultCode: " + resultCode);
+        Log.d("MLC-APP "+this.getClass().getName(), "MagazineActivity finished, resultCode: " + resultCode);
         if(requestCode == SHELF_CHECKOUT_REQUEST_CODE) {
             if(resultCode == RESULT_OK) {
                 onRefresh();

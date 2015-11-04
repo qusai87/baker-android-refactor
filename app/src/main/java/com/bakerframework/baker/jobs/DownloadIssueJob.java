@@ -72,7 +72,7 @@ public class DownloadIssueJob extends Job {
 
     @Override
     protected boolean shouldReRunOnThrowable(Throwable throwable) {
-        Log.e("DownloadIssueJob", throwable.getLocalizedMessage());
+        Log.e("MLC-APP "+this.getClass().getName(), throwable.getLocalizedMessage());
         completed = true;
         EventBus.getDefault().post(new DownloadIssueErrorEvent(issue, throwable));
         return false;

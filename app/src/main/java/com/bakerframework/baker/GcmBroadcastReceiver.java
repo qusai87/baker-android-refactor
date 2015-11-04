@@ -88,7 +88,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
         }
 
         if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
-            Log.i(this.getClass().toString(), "Received: " + extras.toString());
+            Log.i("MLC-APP " +this.getClass().toString(), "Received: " + extras.toString());
             /**
              * Filter messages based on message type. Since it is likely that GCM
              * will be extended in the future with new message types, just ignore
@@ -139,7 +139,7 @@ public class GcmBroadcastReceiver extends BroadcastReceiver {
                     }
                 } catch (Exception ex) {
                     // Do nothing, if it fails we simply do not process the notification.
-                    Log.e(this.getClass().toString(), ex.getMessage());
+                    Log.e("MLC-APP "+this.getClass().toString(), ex.getMessage());
                 }
 
                 // Post notification of received message.

@@ -33,7 +33,7 @@ import java.security.SignatureException;
  * and process the response.
  */
 class LicenseValidator {
-    private static final String TAG = "LicenseValidator";
+    private static final String TAG = "MLC LicenseValidator";
 
     // Server response codes.
     private static final int LICENSED = 0x0;

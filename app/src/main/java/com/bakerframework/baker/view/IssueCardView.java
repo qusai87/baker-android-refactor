@@ -31,6 +31,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -412,11 +413,12 @@ public class IssueCardView extends LinearLayout {
             JSONObject jsonObj = new JSONObject();
             try {
                 jsonObj.put("version", issue.getVersion());
+
+                FileHelper.createCacheFile(issue.getIssueJsonFile(), jsonObj.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e("MLC-APP "+this.getClass().getName(), e.getMessage());
             }
-
-            FileHelper.createCacheFile(issue.getIssueJsonFile(),jsonObj.toString());
         }
     }
 

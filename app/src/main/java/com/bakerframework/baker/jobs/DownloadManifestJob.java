@@ -58,7 +58,7 @@ public class DownloadManifestJob extends Job {
 
     @Override
     public void onRun() throws Throwable {
-        Log.d("DownloadManifestJob", "DOWNLOADING FILE: " + url);
+        Log.d("MLC-APP "+this.getClass().getName(), "DOWNLOADING FILE: " + url);
 
         // Download file
         downloadHandler = new DownloadHandler(this.url);
@@ -71,7 +71,7 @@ public class DownloadManifestJob extends Job {
 
     @Override
     protected boolean shouldReRunOnThrowable(Throwable throwable) {
-        Log.e("DownloadManifestJob", throwable.getLocalizedMessage());
+        Log.e("MLC-APP "+this.getClass().getName(), throwable.getLocalizedMessage());
         completed = true;
         EventBus.getDefault().post(new DownloadManifestErrorEvent(throwable));
         return false;

@@ -48,7 +48,7 @@ import java.util.Vector;
  */
 public class APKExpansionPolicy implements Policy {
 
-    private static final String TAG = "APKExpansionPolicy";
+    private static final String TAG = "MLC APKExpansionPolicy";
     private static final String PREFS_FILE = "com.android.vending.licensing.APKExpansionPolicy";
     private static final String PREF_LAST_RESPONSE = "lastResponse";
     private static final String PREF_VALIDITY_TIMESTAMP = "validityTimestamp";

@@ -55,10 +55,10 @@ public class PluginManager {
                 BakerPlugin plugin = (BakerPlugin) constructor.newInstance();
                 plugins.add(plugin);
             } catch (Exception e) {
-                Log.e("BakerApplication", "Plugin Error: " + e.getMessage());
+                Log.e("MLC-APP "+this.getClass().getName(), "Plugin Error: " + e.getMessage());
             }
         }
-        Log.d("BakerApplication", "Initialized " + plugins.size() + " plugins");
+        Log.d("MLC-APP "+this.getClass().getName(), "Initialized " + plugins.size() + " plugins");
     }
 
     // Activity Events

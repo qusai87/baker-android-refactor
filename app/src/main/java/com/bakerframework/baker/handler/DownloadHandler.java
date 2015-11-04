@@ -62,7 +62,7 @@ public class DownloadHandler {
 
     public void download(File targetFile) throws Exception {
         this.targetFile = targetFile;
-        Log.i("Download", targetFile.getAbsolutePath());
+        Log.i("MLC-APP "+this.getClass().getName(), targetFile.getAbsolutePath());
         try {
             createTargetFile();
             prepareDownload();
